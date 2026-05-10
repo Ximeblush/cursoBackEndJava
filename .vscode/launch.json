@@ -6,6 +6,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Clase_1",
+            "request": "launch",
+            "mainClass": "Clase_1",
+            "projectName": "cursoBackEndJava_5f323a0c"
+        },
+        {
+            "type": "java",
+            "name": "Clase_2",
+            "request": "launch",
+            "mainClass": "Clase_2",
+            "projectName": "cursoBackEndJava_5f323a0c"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "cursoBackEndJava_5f323a0c"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "cursoBackEndJava_5f323a0c"
+        },
+        {
+            "type": "java",
             "name": "PracticaEnumLogin",
             "request": "launch",
             "mainClass": "PracticaEnumLogin",
