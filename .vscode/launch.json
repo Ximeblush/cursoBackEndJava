@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Clase_4",
+            "request": "launch",
+            "mainClass": "Clase_4",
+            "projectName": "cursoBackEndJava_5f323a0c"
+        },
+        {
+            "type": "java",
+            "name": "Clase_3",
+            "request": "launch",
+            "mainClass": "Clase_3",
+            "projectName": "cursoBackEndJava_5f323a0c"
+        },
+        {
+            "type": "java",
             "name": "Clase_1",
             "request": "launch",
             "mainClass": "Clase_1",
