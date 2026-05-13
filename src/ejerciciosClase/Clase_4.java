@@ -1,3 +1,4 @@
+package ejerciciosClase;
 public class Clase_4 {
     //Escribí un método calcularImpuesto que reciba un precio y un porcentaje de impuesto y devuelva el precio final.
     
