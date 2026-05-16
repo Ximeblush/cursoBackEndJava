@@ -65,8 +65,13 @@ public class Clase_3 {
             System.out.println(formatearDescripcion(bebidas[i]));
         }
 
-        // bebidas.add(" Milanesa con papas fritas "); //No se permite adherir en un
+        try { 
+            //bebidas.add(" Milanesa con papas fritas "); //No se permite adherir en un
         // String
+            System.out.println(bebidas[5]);
+        } catch (Exception e) {
+            System.out.println("El id 5 está fuera del rango del String");
+        }
 
         // Creá un ArrayList<String> para productos.
         // Agregá varios productos, eliminá uno, verificá si otro existe y luego imprimí la lista final.

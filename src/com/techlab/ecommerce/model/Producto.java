@@ -4,17 +4,29 @@ package com.techlab.ecommerce.model;
 
 public class Producto {
 
+    //Atributos
     private int id;
     private String nombre;
     private double precio;
     private int stock;
 
+    //Métodos
+
+        //Constructores
     public Producto(String nombre, double precio, int stock){
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
     }
 
+    public Producto(int id, String nombre, double precio, int stock){
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+    }
+
+        //Getters y Setters
     public int getId() {
         return id;
     }
@@ -23,7 +35,7 @@ public class Producto {
         this.id = id;
     }
 
-        public String getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
@@ -31,7 +43,7 @@ public class Producto {
         this.nombre = nombre;
     }
 
-        public int getStock() {
+    public int getStock() {
         return stock;
     }
 
@@ -39,11 +51,14 @@ public class Producto {
         this.stock = stock;
     }
 
-        public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+        //Métodos propios de la clase ¿¿??
+
 }
