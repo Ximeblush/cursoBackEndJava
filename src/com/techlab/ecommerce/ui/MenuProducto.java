@@ -30,6 +30,7 @@ public class MenuProducto {
 
             opcion = sc.nextInt();
  
+            System.out.println("");
             System.out.println("-----------------------");
 
             switch (opcion) {
@@ -37,9 +38,9 @@ public class MenuProducto {
                         break;
                 case 2: listarProductos(); //System.out.println("2) Listar productos");
                         break;
-                case 3: System.out.println("3) Buscar/Actualizar producto");
+                case 3: buscarProducto(); //System.out.println("3) Buscar/Actualizar producto");
                         break;
-                case 4: System.out.println("4) Eliminar producto");
+                case 4: eliminarProducto(); //System.out.println("4) Eliminar producto");
                         break;
                 case 5: System.out.println("5) Crear pedido");
                         break;
@@ -53,6 +54,7 @@ public class MenuProducto {
             }
             
             System.out.println("-----------------------");
+            System.out.println("");
 
         } while (opcion != 0);
         
@@ -95,6 +97,94 @@ public class MenuProducto {
 
         for (Producto p : productos) {
             System.out.println("ID: " + p.getId() + " Nombre: " + p.getNombre() + " Precio: " + p.getPrecio() + " Stock: " + p.getStock()) ;
+        }
+
+    }
+
+    public static void buscarProducto() { 
+
+        //Scanner sc = new Scanner(System.in);
+        int opcion;                
+
+        do{
+                System.out.println("Buscar Producto:");
+                System.out.println("1) Buscar por id:");        
+                System.out.println("2) Buscar por nombre:");    
+                System.out.println("3) Volver al menú de opciones");    
+                
+                Producto p = new Producto();
+                boolean existe = false;
+                opcion = sc.nextInt();
+
+                switch (opcion) {
+                        case 1: System.out.println("Ingrese ID:");
+                                int id = sc.nextInt();
+                                for (Producto pb : productos) {
+                                        if (pb.getId() == id) {
+                                                p = pb;
+                                                existe = true;
+                                                break;
+                                        }
+                                } 
+                                break;
+                        case 2: System.out.println("Ingrese Nombre:");
+                                sc.nextLine();
+                                String nombre = sc.nextLine();
+                                for (Producto pb : productos) {
+                                        if (pb.getNombre().contains(nombre)) {
+                                                p = pb;
+                                                existe = true;
+                                                break;
+                                        }
+                                }
+                                break;
+                        case 3: break;
+                        default: System.out.println("Opción no válida");
+                                break;
+
+                }
+                                
+                if (existe == true) {
+                        System.out.println("ID: " + p.getId() + " Nombre: " + p.getNombre() + " Precio: " + p.getPrecio() + " Stock: " + p.getStock()) ;
+                        p = null;
+                }
+                else {
+                        System.out.println("Producto no encontrado.");
+                }
+
+        } while (opcion != 3);
+
+
+    }
+
+    public static void eliminarProducto() { 
+
+        //Scanner sc = new Scanner(System.in);
+        Producto p = new Producto();
+        boolean existe = false;
+
+        System.out.println("Ingrese el ID del producto a eliminar:");
+        int id = Integer.parseInt(sc.nextLine()); // Para no necesitar consumir el enter de nextint antes de usar el nextline.
+        for (Producto pe : productos) {
+                if (pe.getId() == id) {
+                        p = pe;
+                        existe = true;
+                        break;
+                }                
+        } 
+
+        if (existe) {
+                System.out.println("¿Desea eliminar el siguiente producto?");
+                System.out.println("ID: " + p.getId() + " Nombre: " + p.getNombre() + " Precio: " + p.getPrecio() + " Stock: " + p.getStock()) ;
+                System.out.println("Ingrese S para Si y N para No");
+                String confirmacion = sc.nextLine();  
+                if (confirmacion.equalsIgnoreCase("S")) {     
+                        productos.remove(p);
+                        System.out.println("Producto eliminado");
+                }
+        }
+        else {
+                System.out.println("Producto no encontrado.");
         }
 
     }

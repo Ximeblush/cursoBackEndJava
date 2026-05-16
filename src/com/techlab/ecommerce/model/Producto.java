@@ -13,6 +13,10 @@ public class Producto {
     //Métodos
 
         //Constructores
+
+     public Producto(){
+        }
+        
     public Producto(String nombre, double precio, int stock){
         this.nombre = nombre;
         this.precio = precio;
