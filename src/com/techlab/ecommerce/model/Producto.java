@@ -1,5 +1,6 @@
 package com.techlab.ecommerce.model;
 
+
 //Clase Producto: con atributos id, nombre, precio, stock, getters y setters.
 
 public class Producto {
@@ -7,6 +8,7 @@ public class Producto {
     //Atributos
     private int id;
     private String nombre;
+    private Categoria categoria;
     private double precio;
     private int stock;
 
@@ -47,6 +49,14 @@ public class Producto {
         this.nombre = nombre;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     public int getStock() {
         return stock;
     }
@@ -65,4 +75,15 @@ public class Producto {
 
         //Métodos propios de la clase ¿¿??
 
+    // toString() sobreescribe el método heredado de Object.
+    // Sirve para mostrar el producto de forma legible al listarlo en consola. 
+    // Cuando hagamos System.out.println(producto), Java llama automáticamente a este método.
+    @Override
+    public String toString() {
+        return "ID: " + id +
+                " | " + nombre +
+                " | Categoria: " + categoria +
+                " | $" + precio +
+                " | Stock: " + stock;
+    }
 }
