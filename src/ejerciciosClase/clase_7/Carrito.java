@@ -2,8 +2,6 @@ package ejerciciosClase.clase_7;
 
 import java.util.ArrayList;
 
-import ejerciciosClase.clase_7.Producto;
-
 public class Carrito {
 
     private ArrayList<Producto> productos;

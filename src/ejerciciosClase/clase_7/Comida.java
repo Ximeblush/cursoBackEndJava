@@ -1,7 +1,5 @@
 package ejerciciosClase.clase_7;
 
-import ejerciciosClase.clase_7.Producto;
-
 public class Comida extends Producto implements Descontable {
 
     private String vencimiento;

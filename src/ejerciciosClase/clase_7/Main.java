@@ -1,7 +1,5 @@
 package ejerciciosClase.clase_7;
 
-import ejerciciosClase.clase_7.Producto;
-
 public class Main {
 
     public static void main(String[] args) {
