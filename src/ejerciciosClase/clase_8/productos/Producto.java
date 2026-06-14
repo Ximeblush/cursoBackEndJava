@@ -1,4 +1,4 @@
-package ejerciciosClase.clase_7;
+package ejerciciosClase.clase_8.productos;
 
 public abstract class Producto {
 

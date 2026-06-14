@@ -1,6 +1,6 @@
-package ejerciciosClase.clase_7;
+package ejerciciosClase.clase_8.productos;
 
-import ejerciciosClase.clase_7.Producto;
+import ejerciciosClase.clase_8.productos.Producto;
 
 public class Comida extends Producto implements Descontable {
 

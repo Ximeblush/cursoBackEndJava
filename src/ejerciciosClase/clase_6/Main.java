@@ -1,6 +1,6 @@
 package ejerciciosClase.clase_6;
 
-public class Clase_6 {
+public class Main {
 
     public static void main(String[] args) {
         Cliente cliente = new Cliente("Maria", "maria64gmail.com");

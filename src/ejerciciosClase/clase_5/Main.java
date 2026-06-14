@@ -3,7 +3,7 @@ package ejerciciosClase.clase_5;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Clase_5 {
+public class Main {
 
     public static void main(String[] args) {
         Cliente cliente = new Cliente("Micaela", "micaela@gmail.com");
