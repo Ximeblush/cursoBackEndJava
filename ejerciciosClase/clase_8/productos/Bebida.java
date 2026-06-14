@@ -1,7 +1,5 @@
 package ejerciciosClase.clase_8.productos;
 
-import ejerciciosClase.clase_8.productos.Producto;
-
 public class Bebida extends Producto implements Descontable {
 
     private double litros;
