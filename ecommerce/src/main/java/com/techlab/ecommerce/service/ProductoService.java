@@ -1,25 +1,73 @@
 package com.techlab.ecommerce.service;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 import com.techlab.ecommerce.model.Producto;
+import com.techlab.ecommerce.exception.ProductoNoEncontradoException;
 
+@Service // Esto es para indicar que esta clase es un servicio de Spring. El servicio se encarga de realizar la lógica de negocio, es decir, de manejar los productos, de validar los datos, etc. El controlador no debe tener lógica de negocio, solo debe delegar en el servicio.
 public class ProductoService {
         
-    static List<Producto> productos = new ArrayList<>();
-    static Scanner sc = new Scanner(System.in);
+    private List<Producto> productos = new ArrayList<>();
+    //private Scanner sc = new Scanner(System.in);
 
-    public static void cargarProductos() {
+   
+    public List<Producto> listarProductos() {
+        return productos;
+    }
+
+    public Producto obtenerPorId(int id) {
+        for (Producto p : productos) {
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        throw new ProductoNoEncontradoException("Producto con id " + id + " no encontrado");
+    }   
+
+    public Producto agregar(Producto p) {
+        p.setId(productos.size() + 1); // Asignamos un id al producto. El id es el tamaño de la lista + 1. Esto es para que el id sea único y no se repita. El id es autoincremental.
+        productos.add(p);
+        return p;
+    }
+
+    public Producto actualizar(int id, Producto datos) {
+        Producto p = obtenerPorId(id);
+        if (p != null) {
+            p.setNombre(datos.getNombre());
+            p.setPrecio(datos.getPrecio());
+            p.setStock(datos.getStock());
+            return p;//"Producto con id " + id + " modificado con éxito";
+        } else {
+            throw new ProductoNoEncontradoException("Producto con id " + id + " no encontrado");
+        }
+    }
+
+    public String borrar(int id) {
+        Producto p = obtenerPorId(id);
+         if (p != null) {
+            productos.remove(p);
+            return "Producto con id " + id + " eliminado";
+        } else {
+            throw new ProductoNoEncontradoException("Producto con id " + id + " no encontrado");
+        }
+    }
+
+
+   /* 
+   public Static void cargarProductos() {
         productos.add(new Producto(1, " Milanesa con papas fritas ", 15000.0, 5));
         productos.add(new Producto(2, "Empanadas", 5000.0, 15));
         productos.add(new Producto(3, "Locrrrrrro", 11000.0, 8));
         productos.add(new Producto(4, "Locro", 10000.0, 9));
 
     }  
-
-    public static void agregarProducto() { 
+   
+   public static void agregarProducto() { 
 
         //Scanner sc = new Scanner(System.in);
 
@@ -40,18 +88,10 @@ public class ProductoService {
         System.out.println("Producto agregado con id " + p.getId());
 
     }
+*/
 
-    public static void listarProductos() {
 
-        System.out.println("Listado de productos:");
-
-        for (Producto p : productos) {
-            System.out.println("ID: " + p.getId() + " Nombre: " + p.getNombre() + " Precio: " + p.getPrecio() + " Stock: " + p.getStock()) ;
-        }
-
-    }
-
-    public static void buscarProducto() { 
+  /*  public static void buscarProducto() { 
 
         //Scanner sc = new Scanner(System.in);
         int opcion;                
@@ -69,6 +109,7 @@ public class ProductoService {
                 switch (opcion) {
                         case 1: System.out.println("Ingrese ID:");
                                 int id = sc.nextInt();
+                                p = obtenerPorId(id); // Llamamos al método obtenerPorId para buscar el producto por id. Si no se encuentra, se lanza la excepción ProductoNoEncontradoException.
                                 for (Producto pb : productos) {
                                         if (pb.getId() == id) {
                                                 p = pb;
@@ -137,5 +178,5 @@ public class ProductoService {
                 System.out.println("Producto no encontrado.");
         }
 
-    }
+    }*/
 }

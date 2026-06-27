@@ -1,3 +1,5 @@
+package com.techlab.ecommerce;
+
 import java.util.Scanner;
 
 
