@@ -1,15 +1,28 @@
 package com.techlab.ecommerce.model;
 
+import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 //Clase Producto: con atributos id, nombre, precio, stock, getters y setters.
-
+@Entity
+@Table(name = "producto")
 public class Producto {
 
     //Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)   
     private int id;
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
-    private Categoria categoria;
+    @Column(name = "categoria", nullable = false, length = 50)
+    private String categoria;
+    @Column(name = "precio", nullable = false)
     private double precio;
+    @Column(name = "stock", nullable = false)
     private int stock;
 
     //Métodos
@@ -19,8 +32,9 @@ public class Producto {
      public Producto(){
         }
         
-    public Producto(String nombre, double precio, int stock){
+    public Producto(String nombre, String categoria, double precio, int stock){
         this.nombre = nombre;
+        this.categoria = categoria;
         this.precio = precio;
         this.stock = stock;
     }
@@ -49,11 +63,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 

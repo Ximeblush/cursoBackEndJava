@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.ResponseEntity;
 
+import com.techlab.ecommerce.exception.ProductoNoEncontradoException;
 import com.techlab.ecommerce.model.Producto;
 import com.techlab.ecommerce.service.ProductoService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,8 +34,13 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}") //Se inyectalaza el método de la pre-entrega ProductoService.obtenerPorId() por el endpoint /productos/{id}, es decir, cuando el cliente haga una petición GET a /productos/{id}, se va a ejecutar el método obtenerPorId() del servicio y se va a devolver el producto con el id especificado al cliente.
-    public Producto obtenerProducto(@PathVariable int id) {
-        return service.obtenerPorId(id); // Es el metodo de ProductoService que se inyecta en el controlador ProcutoContoller. El controlador se encarga de recibir las peticiones del cliente, de llamar al servicio para que realice la lógica de negocio y de devolver la respuesta al cliente. El servicio se encarga de realizar la lógica de negocio, es decir, de manejar los productos, de validar los datos, etc. El controlador no debe tener lógica de negocio, solo debe delegar en el servicio.
+    public ResponseEntity<Producto> obtenerProducto(@PathVariable int id) {
+        //return service.obtenerPorId(id); // Es el metodo de ProductoService que se inyecta en el controlador ProcutoContoller. El controlador se encarga de recibir las peticiones del cliente, de llamar al servicio para que realice la lógica de negocio y de devolver la respuesta al cliente. El servicio se encarga de realizar la lógica de negocio, es decir, de manejar los productos, de validar los datos, etc. El controlador no debe tener lógica de negocio, solo debe delegar en el servicio.
+        try {
+            return ResponseEntity.ok(service.obtenerPorId(id));
+        } catch (ProductoNoEncontradoException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("")

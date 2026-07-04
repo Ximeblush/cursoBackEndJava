@@ -13,7 +13,6 @@ package com.techlab.ecommerce.exception;
  * genéricas como Exception o IllegalArgumentException.
  */
 public class ProductoNoEncontradoException extends RuntimeException {
-
     public ProductoNoEncontradoException(String mensaje) {
         // super() llama al constructor de la clase padre (RuntimeException),
         // que es quien guarda el mensaje y lo expone con getMessage().
