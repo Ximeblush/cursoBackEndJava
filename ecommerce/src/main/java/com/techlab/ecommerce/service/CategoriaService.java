@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.techlab.ecommerce.model.Categoria;
 import com.techlab.ecommerce.repository.CategoriaRepository;
-import com.techlab.ecommerce.exception.CategoriaNoEncontrada;
-
+import com.techlab.ecommerce.exception.CategoriaNoEncontradaException;
 
 
 @Service
@@ -25,7 +24,7 @@ public class CategoriaService {
     }
     
     public Categoria obtenerPorId(int id) {
-        return repository.findById(id).orElseThrow(() -> new CategoriaNoEncontrada("Categoría con id " + id + " no encontrada"));
+        return repository.findById(id).orElseThrow(() -> new CategoriaNoEncontradaException("Categoría con id " + id + " no encontrada"));
     }   
 
     public Categoria agregar(Categoria c) {
@@ -39,7 +38,7 @@ public class CategoriaService {
             c.setDescripcion(datos.getDescripcion());
             return repository.save(c);
         } else {
-            throw new CategoriaNoEncontrada("Categoría con id " + id + " no encontrada");
+            throw new CategoriaNoEncontradaException("Categoría con id " + id + " no encontrada");
         }
     }
 
@@ -48,7 +47,7 @@ public class CategoriaService {
          if (c != null) {
             repository.delete(c);            
         } else {
-            throw new CategoriaNoEncontrada("Categoría con id " + id + " no encontrada");
+            throw new CategoriaNoEncontradaException("Categoría con id " + id + " no encontrada");
         }
     }
 

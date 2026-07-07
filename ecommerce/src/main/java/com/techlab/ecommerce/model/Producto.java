@@ -1,12 +1,21 @@
 package com.techlab.ecommerce.model;
 
 import jakarta.persistence.*;
+/*
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+*/
+import jakarta.validation.constraints.*;
+/*
+import jakarta.validation.constraints.blank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+*/
 //Clase Producto: con atributos id, nombre, precio, stock, getters y setters.
 @Entity
 @Table(name = "producto")
@@ -16,12 +25,20 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)   
     private int id;
+
+    @NotBlank(message = "El nombre del producto no puede estar vacío")
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
-    @Column(name = "categoria", nullable = false, length = 50)
-    private String categoria;
+        
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")    
+    private Categoria categoria;
+    
+    @Positive(message = "El precio del producto debe ser mayor a 0")
     @Column(name = "precio", nullable = false)
     private double precio;
+    
+    @PositiveOrZero(message = "El stock del producto no puede ser negativo")    
     @Column(name = "stock", nullable = false)
     private int stock;
 
@@ -32,7 +49,7 @@ public class Producto {
      public Producto(){
         }
         
-    public Producto(String nombre, String categoria, double precio, int stock){
+    public Producto(String nombre, Categoria categoria, double precio, int stock){
         this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
@@ -63,11 +80,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 

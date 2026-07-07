@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "categoria")
@@ -13,8 +14,11 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank(message = "El nombre de la categoría no puede estar vacío")
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
+    
     @Column(name = "descripcion", length = 200)
     private String descripcion;
 

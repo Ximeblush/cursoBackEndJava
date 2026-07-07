@@ -7,7 +7,7 @@ public class Bebida extends Producto {
     public Bebida() {
     }
 
-    public Bebida(String nombre, String categoria, double precio, int stock, String tamanio) {
+    public Bebida(String nombre, Categoria categoria, double precio, int stock, String tamanio) {
         super(nombre, categoria, precio, stock);
         this.tamanio = tamanio;
     }

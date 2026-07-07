@@ -1,5 +1,7 @@
 package com.techlab.ecommerce.controller;
 
+package com.techlab.ecommerce.controller;
+
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -20,14 +22,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
+public class CarritoControlles {
 
 @RestController // Esto es para indicar que esta clase es un controlador de Spring. El controlador se encarga de recibir las peticiones del cliente, de llamar al servicio para que realice la lógica de negocio y de devolver la respuesta al cliente. El servicio se encarga de realizar la lógica de negocio, es decir, de manejar los productos, de validar los datos, etc. El controlador no debe tener lógica de negocio, solo debe delegar en el servicio.
-@RequestMapping("/productos")  // Define la url base de la clase. Esto es para indicar que todas las rutas de este controlador van a empezar con /productos. Son los endpoints del controlador. Es decir, si queremos listar los productos, la ruta va a ser /productos/listar. Si queremos agregar un producto, la ruta va a ser /productos/agregar, etc.
-public class ProductoController {
+@RequestMapping("/carrito")  // Define la url base de la clase. Esto es para indicar que todas las rutas de este controlador van a empezar con /carrito. Son los endpoints del controlador. Es decir, si queremos listar los productos, la ruta va a ser /carrito/listar. Si queremos agregar un producto, la ruta va a ser /carrito/agregar, etc.
+public class CarritoController {
 
-    private final ProductoService service; // Si es final, no es crea el objeto con new, porque Spring lo genera automaticamente. Esto es para inyectar el servicio en el controlador. El controlador se encarga de recibir las peticiones del cliente, de llamar al servicio para que realice la lógica de negocio y de devolver la respuesta al cliente. El servicio se encarga de realizar la lógica de negocio, es decir, de manejar los productos, de validar los datos, etc. El controlador no debe tener lógica de negocio, solo debe delegar en el servicio.
+    private final CarritoService service; // Si es final, no es crea el objeto con new, porque Spring lo genera automaticamente. Esto es para inyectar el servicio en el controlador. El controlador se encarga de recibir las peticiones del cliente, de llamar al servicio para que realice la lógica de negocio y de devolver la respuesta al cliente. El servicio se encarga de realizar la lógica de negocio, es decir, de manejar los productos, de validar los datos, etc. El controlador no debe tener lógica de negocio, solo debe delegar en el servicio.
 
-    public ProductoController(ProductoService service) {
+    public CarritoController(CarritoService service) {
         this.service = service;
     }
     
@@ -70,4 +73,5 @@ public class ProductoController {
     public ResponseEntity<List<Producto>> buscarPorCategoria(@PathVariable String categoria) {
         return ResponseEntity.ok(service.buscarPorCategoria(categoria));
     }
+}
 }

@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.ResponseEntity;
 
-import com.techlab.ecommerce.exception.CategoriaNoEncontrada;
+import com.techlab.ecommerce.exception.CategoriaNoEncontradaException;
 import com.techlab.ecommerce.model.Categoria;   
 import com.techlab.ecommerce.service.CategoriaService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/categorias")
@@ -36,18 +38,18 @@ public class CategoriaController {
         //return service.obtenerPorId(id); // Es el metodo de CategoriaService que se inyecta en el controlador CategoriaController. El controlador se encarga de recibir las peticiones del cliente, de llamar al servicio para que realice la lógica de negocio y de devolver la respuesta al cliente. El servicio se encarga de realizar la lógica de negocio, es decir, de manejar las categorías, de validar los datos, etc. El controlador no debe tener lógica de negocio, solo debe delegar en el servicio.
         try {
             return ResponseEntity.ok(service.obtenerPorId(id));
-        } catch (CategoriaNoEncontrada e) {
+        } catch (CategoriaNoEncontradaException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping("")
-    public Categoria crearCategoria(@RequestBody Categoria categoria) {
+    public Categoria crearCategoria(@Valid @RequestBody Categoria categoria) {
         return service.agregar(categoria);
     }
 
     @PutMapping("/{id}")
-    public Categoria actualizarCategoria(@PathVariable int id, @RequestBody Categoria datos) {
+    public Categoria actualizarCategoria(@PathVariable int id, @Valid @RequestBody Categoria datos) {
         return service.actualizar(id, datos);
     }
 
