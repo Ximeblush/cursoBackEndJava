@@ -27,8 +27,29 @@ public class Carrito {
     @Positive(message = "La cantidad debe ser un número positivo")
     private int cantidad;
 
+    public Carrito(Cliente cliente, Producto producto, int cantidad) {
+        this.cliente = cliente;
+        this.producto = producto;
+        this.cantidad = cantidad;
+    }
+
+    /*
     @Column(name = "total", nullable = false)
     @Positive(message = "El total debe ser un número positivo") 
     private double total;
+    */
+
+    /*
+    //En clase 
+    @ManyToMany
+    @JoinTable(
+        name = "carrito_producto",
+        joinColumns = @JoinColumn(name = "carrito_id"),
+        inverseJoinColumns = @JoinColumn(name = "producto_id")
+    )
     
+    private List<Producto> productos = new ArrayList<>();   
+*/
+
+
 }

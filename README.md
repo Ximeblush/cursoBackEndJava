@@ -1,79 +1,131 @@
 # TechLab E-commerce
 
-Proyecto Java de consola para practicar los conceptos principales de programacion orientada a objetos aplicados a un sistema simple de gestion de productos.
+Este sistema es una API REST desarrollada en Java con Spring Boot para gestionar productos, categorías, clientes y carritos de compra. Permite realizar operaciones de alta, consulta, actualización y eliminación sobre los distintos recursos, además de inicializar datos de ejemplo al arrancar la aplicación.
 
-La aplicacion principal permite administrar un catalogo basico de productos desde un menu interactivo por consola.
+## Endpoints existentes
 
-## Funcionalidades actuales
+### Productos
 
-- Carga inicial de productos de ejemplo.
-- Alta de nuevos productos con nombre, precio y stock.
-- Listado de productos disponibles.
-- Busqueda de productos por id o por nombre.
-- Eliminacion de productos por id con confirmacion.
-- Menu de opciones por consola.
+- `GET /productos` — Lista todos los productos.
+- `GET /productos/{id}` — Obtiene un producto por su ID.
+- `POST /productos` — Crea un nuevo producto.
+- `PUT /productos/{id}` — Actualiza un producto existente.
+- `DELETE /productos/{id}` — Elimina un producto por su ID.
+- `GET /productos/nombre/{nombre}` — Busca productos por nombre.
+- `GET /productos/categoria/{categoria}` — Busca productos por categoría.
 
-Las opciones de creacion y listado de pedidos aparecen en el menu, pero todavia estan pendientes de implementacion.
+### Categorías
 
-## Estructura principal
+- `GET /categorias` — Lista todas las categorías.
+- `GET /categorias/{id}` — Obtiene una categoría por su ID.
+- `POST /categorias` — Crea una nueva categoría.
+- `PUT /categorias/{id}` — Actualiza una categoría existente.
+- `DELETE /categorias/{id}` — Elimina una categoría por su ID.
 
-```text
-src/
-|-- Main.java
-`-- com/
-    `-- techlab/
-        `-- ecommerce/
-            |-- model/
-            |   |-- Producto.java
-            |   |-- Categoria.java
-            |   |-- Alimento.java
-            |   `-- Bebida.java
-            |-- service/
-            |   `-- ProductoService.java
-            `-- ui/
-                `-- MenuProducto.java
+### Clientes
+
+- `GET /clientes` — Lista todos los clientes.
+- `GET /clientes/{id}` — Obtiene un cliente por su ID.
+- `POST /clientes` — Crea un nuevo cliente.
+- `PUT /clientes/{id}` — Actualiza un cliente existente.
+- `DELETE /clientes/{id}` — Elimina un cliente por su ID.
+
+### Carritos
+
+- `GET /carritos` — Lista todos los carritos.
+- `GET /carritos/{id}` — Obtiene un carrito por su ID.
+- `POST /carritos` — Crea un nuevo carrito.
+- `PUT /carritos/{id}` — Actualiza un carrito existente.
+- `DELETE /carritos/{id}` — Elimina un carrito por su ID.
+
+## Ejemplos de body para probar POST y PUT
+
+### Producto
+
+```json
+{
+  "cliente": {
+    "id": 1,
+    "dni": 12345678,
+    "nombre": "Juan",
+    "apellido": "Perez"
+  },
+  "producto": {
+    "id": 1,
+    "nombre": "Milanesa con papas fritas",
+    "precio": 15000,
+    "stock": 5
+  },
+  "cantidad": 2
+}
 ```
 
-## Clases principales
+### Categoría
 
-- `Producto`: modelo base con id, nombre, categoria, precio y stock.
-- `Categoria`: representa la categoria de un producto con nombre y descripcion.
-- `Alimento`: extension de `Producto` que agrega cantidad de comensales.
-- `Bebida`: extension de `Producto` que agrega tamanio.
-- `MenuProducto`: punto de entrada funcional del sistema por consola.
-- `ProductoService`: base para separar la logica de productos en una capa de servicio.
+```json
+{
+  "nombre": "Bebida",
+  "descripcion": "Bebidas sin alcohol"
+}
+```
+
+### Cliente
+
+```json
+{
+  "dni": 12345678,
+  "nombre": "Juan",
+  "apellido": "Pérez"
+}
+```
+
+### Carrito
+
+```json
+{
+  "cliente": {
+    "id": 1
+  },
+  "producto": {
+    "id": 1
+  },
+  "cantidad": 2
+}
+```
+
+## Tecnologías y herramientas utilizadas
+
+- Java 17
+- Spring Boot
+- Spring Web MVC
+- Spring Data JPA
+- Hibernate
+- MySQL
+- Maven
+- Lombok
+- Jakarta Validation
+- REST API
+- Visual Studio Code
+- Git / GitHub
 
 ## Requisitos
 
-- Java JDK 17 o superior recomendado.
-- Visual Studio Code con Extension Pack for Java, o cualquier IDE compatible con Java.
+- Java JDK 17 o superior
+- Maven
+- MySQL en ejecución
+- Un IDE como Visual Studio Code o IntelliJ IDEA
 
-No se requieren dependencias externas para ejecutar la aplicacion actual.
+## Cómo ejecutar el proyecto
 
-## Como ejecutar
+1. Asegurate de tener MySQL corriendo y una base llamada `ecommerce`.
+2. Desde la raíz del proyecto, ejecutá:
 
-Desde la raiz del proyecto, compilar las clases principales:
-
-```powershell
-javac -d bin src\com\techlab\ecommerce\model\*.java src\com\techlab\ecommerce\ui\MenuProducto.java
+```bash
+./mvnw spring-boot:run
 ```
 
-Luego ejecutar el menu:
+3. La API quedará disponible en:
 
-```powershell
-java -cp bin com.techlab.ecommerce.ui.MenuProducto
+```text
+http://localhost:8080
 ```
-
-Tambien se puede ejecutar desde Visual Studio Code abriendo `MenuProducto.java` y usando la opcion **Run Java**.
-
-## Estado del proyecto
-
-El proyecto se encuentra en desarrollo y funciona como practica de backend con Java. Actualmente la persistencia es en memoria mediante una lista de productos, por lo que los datos agregados o eliminados se pierden al cerrar la aplicacion.
-
-Proximos pasos sugeridos:
-
-- Mover la logica del menu hacia `ProductoService`.
-- Implementar actualizacion de productos.
-- Implementar pedidos.
-- Agregar validaciones para precio, stock y entradas del usuario.
-- Incorporar persistencia en archivos o base de datos.

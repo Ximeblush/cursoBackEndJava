@@ -10,7 +10,13 @@ import java.util.List;
 
 public interface CarritoRepository extends JpaRepository<Carrito, Integer> {
 
-     @Query("SELECT c FROM Carrito c WHERE c.cliente.dni = :clienteDni")
+    @Query("SELECT c FROM Carrito c WHERE c.cliente.id = :clienteId")
+    List<Carrito> findByClienteId(@Param("clienteId") int clienteId);
+
+    @Query("SELECT c FROM Carrito c WHERE c.cliente.dni = :clienteDni")
     List<Carrito> findByClienteDni(@Param("clienteDni") int clienteDni);
+
+    @Query("SELECT c FROM Carrito c WHERE c.cliente.id = :clienteId and c.producto.id = :productoId")
+    Carrito findByClienteIdAndProductoId(@Param("clienteId") int clienteId, @Param("productoId") int productoId);
 
 }
